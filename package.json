@@ -1,0 +1,28 @@
+{
+  "name": "hapi-starter",
+  "version": "0.1.0",
+  "description": "A starting point for hapi.js project",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/lab/bin/lab -c -v -S"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yalochat/hapi-starter.git"
+  },
+  "keywords": [
+    "hapijs",
+    "yalo",
+    "nodejs",
+    "starter",
+    "kit",
+    "boilerplate",
+    "generator"
+  ],
+  "author": "Yoel Monzon <yoelfme@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yalochat/hapi-starter/issues"
+  },
+  "homepage": "https://github.com/yalochat/hapi-starter#readme"
+}
