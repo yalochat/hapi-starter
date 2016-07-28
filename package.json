@@ -2,7 +2,7 @@
   "name": "hapi-starter",
   "version": "0.1.0",
   "description": "A starting point for hapi.js project",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "./node_modules/lab/bin/lab -c -v -S"
   },
