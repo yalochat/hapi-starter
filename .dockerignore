@@ -1,0 +1,9 @@
+build
+docker
+node_modules
+.git
+test
+.gitignore
+gulpfile.js
+LICENCE
+README.md
