@@ -9,7 +9,6 @@ Composer((err, server) => {
   }
 
   server.start(() => {
-
     Logger.info(`Project has been start, listening on port ${server.info.port}`)
   })
 })

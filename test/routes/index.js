@@ -9,20 +9,17 @@ const Config = require('../../config')
 const Package = require('../../package.json')
 
 const lab = exports.lab = Lab.script()
-const describe = lab.describe
-const it = lab.it
+const { describe, it } = lab
 const expect = Code.expect
 
 let server = null
 
 lab.beforeEach(done => {
-
   const plugins = [IndexPlugin]
 
   server = new Hapi.Server()
   server.connection({ port: Config.get('/port/web') })
   server.register(plugins, (err) => {
-
     if (err) {
       return done(err)
     }
@@ -32,7 +29,6 @@ lab.beforeEach(done => {
 })
 
 describe('Index Route', () => {
-
   it('returns route /status with status code 200 and version', done => {
     const request = {
       method: 'GET',

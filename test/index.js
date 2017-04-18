@@ -7,15 +7,13 @@ const Glue = require('glue')
 const Index = require('../index')
 
 const lab = exports.lab = Lab.script()
-const describe = lab.describe
-const it = lab.it
+const { describe, it } = lab
 const expect = Code.expect
 
 let configuration = null
 let options = null
 
-lab.beforeEach(done => {
-
+lab.beforeEach((done) => {
   configuration = {
     server: {
       debug: {
@@ -60,11 +58,9 @@ lab.beforeEach(done => {
 })
 
 describe('Index file', () => {
-
   it('starts server well', done => {
-
     Index((err, server) => {
-
+      expect(err).to.not.exist()
       expect(server).to.be.instanceOf(Hapi.Server)
       done()
     })
@@ -72,13 +68,14 @@ describe('Index file', () => {
 
   it('start server well and register plugin with options', done => {
     Glue.compose.bind(Glue, configuration, options)((err, server) => {
+      expect(err).to.not.exist()
       expect(server).to.be.instanceOf(Hapi.Server)
       done()
     })
   })
 
   it('start server well and register plugin options of a plugin that does not exist', done => {
-    configuration.registrations =  [
+    configuration.registrations = [
       {
         plugin: {
           register: '../lib/plugin-loader',
@@ -101,13 +98,14 @@ describe('Index file', () => {
     }
 
     Glue.compose.bind(Glue, configuration, options)((err, server) => {
+      expect(err).to.not.exist()
       expect(server).to.be.instanceOf(Hapi.Server)
       done()
     })
   })
 
   it('start server well and register bad plugins', done => {
-    configuration.registrations =  [
+    configuration.registrations = [
       {
         plugin: {
           register: '../lib/plugin-loader',
@@ -123,6 +121,7 @@ describe('Index file', () => {
     }
 
     Glue.compose.bind(Glue, configuration, options)((err, server) => {
+      expect(err).to.not.exist()
       expect(server).to.be.instanceOf(Hapi.Server)
       done()
     })

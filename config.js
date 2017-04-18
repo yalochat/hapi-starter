@@ -24,5 +24,5 @@ const criteria = {
 
 module.exports = {
   get: key => store.get(key, criteria),
-  meta: key =>  store.meta(key, criteria)
+  meta: key => store.meta(key, criteria)
 }
