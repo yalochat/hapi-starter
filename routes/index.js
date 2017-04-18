@@ -17,5 +17,5 @@ exports.register = (server, options, next) => {
 }
 
 exports.register.attributes = {
-  name: 'index'
+  name: 'routes-index'
 }
