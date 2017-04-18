@@ -4,7 +4,8 @@
   "description": "A starting point for hapi.js project",
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/lab/bin/lab -c -v -S"
+    "test": "./node_modules/lab/bin/lab -c -v -S",
+    "gulp:test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -26,8 +27,6 @@
   },
   "homepage": "https://github.com/yalochat/hapi-starter#readme",
   "devDependencies": {
-    "babel-preset-es2015": "^6.9.0",
-    "babel-register": "^6.11.6",
     "code": "^3.0.2",
     "dotenv": "^2.0.0",
     "gulp": "^3.9.1",
