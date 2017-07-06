@@ -1,50 +1,54 @@
 {
-  "name": "hapi-starter",
-  "version": "1.0.0",
-  "description": "A starting point for hapi.js project",
-  "main": "server.js",
-  "scripts": {
-    "test": "./node_modules/lab/bin/lab -c -v -S",
-    "gulp:test": "gulp test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yalochat/hapi-starter.git"
-  },
-  "keywords": [
-    "hapijs",
-    "yalo",
-    "nodejs",
-    "starter",
-    "kit",
-    "boilerplate",
-    "generator"
-  ],
-  "author": "Yoel Monzon <yoelfme@hotmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yalochat/hapi-starter/issues"
-  },
-  "homepage": "https://github.com/yalochat/hapi-starter#readme",
-  "devDependencies": {
-    "code": "^4.0.0",
-    "dotenv": "^4.0.0",
-    "gulp": "^3.9.1",
-    "gulp-nodemon": "^2.1.0",
-    "gulp-watch": "^4.3.9",
-    "lab": "^13.0.2",
-    "minimist": "^1.2.0",
-    "require-dir": "^0.3.0"
-  },
-  "dependencies": {
-    "boom": "^4.3.1",
-    "bucker": "^1.1.1",
-    "confidence": "^3.0.1",
-    "glue": "^4.1.0",
-    "hapi": "^16.0.0",
-    "hoek": "^4.0.2",
-    "lodash": "^4.14.0",
-    "require-dir": "^0.3.0",
-    "to-boolean": "^1.0.0"
-  }
+    "name": "hapi-starter",
+    "version": "1.0.0",
+    "description": "A starting point for hapi.js project",
+    "main": "server.js",
+    "scripts": {
+        "test": "jest tests/ --coverage --verbose",
+        "gulp:test": "gulp test",
+        "gulp:serve": "gulp serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yalochat/hapi-starter.git"
+    },
+    "keywords": [
+        "hapijs",
+        "yalo",
+        "nodejs",
+        "starter",
+        "kit",
+        "boilerplate",
+        "generator"
+    ],
+    "author": "Yalo <eng@yalochat.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/yalochat/hapi-starter/issues"
+    },
+    "homepage": "https://github.com/yalochat/hapi-starter#readme",
+    "devDependencies": {
+        "dotenv": "^4.0.0",
+        "gulp": "^3.9.1",
+        "gulp-nodemon": "^2.1.0",
+        "gulp-watch": "^4.3.9",
+        "jest": "^20.0.4",
+        "minimist": "^1.2.0",
+        "require-dir": "^0.3.0"
+    },
+    "dependencies": {
+        "boom": "^5.1.0",
+        "bucker": "^1.1.1",
+        "confidence": "^3.0.1",
+        "glue": "^4.1.0",
+        "hapi": "^16.4.3",
+        "hoek": "^4.0.2",
+        "lodash": "^4.14.0",
+        "require-dir": "^0.3.0",
+        "to-boolean": "^1.0.0"
+    },
+    "jest": {
+        "collectCoverage": true,
+        "coverageDirectory": "coverage"
+    }
 }
