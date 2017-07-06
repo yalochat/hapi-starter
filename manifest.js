@@ -30,7 +30,7 @@ const manifest = {
       plugin: {
         register: './lib/plugin-loader',
         options: {
-          paths: ['../routes']
+          paths: ['./routes']
         }
       }
     }
@@ -40,6 +40,6 @@ const manifest = {
 const store = new Confidence.Store(manifest)
 
 module.exports = {
-  get: key => store.get(key, criteria),
-  meta: key => store.meta(key, criteria)
+  get: (key) => store.get(key, criteria),
+  meta: (key) => store.meta(key, criteria)
 }

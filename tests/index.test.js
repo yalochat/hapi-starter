@@ -1,19 +1,13 @@
 'use strict'
 
-const Lab = require('lab')
-const Code = require('code')
 const Hapi = require('hapi')
 const Glue = require('glue')
 const Index = require('../index')
 
-const lab = exports.lab = Lab.script()
-const { describe, it } = lab
-const expect = Code.expect
-
 let configuration = null
 let options = null
 
-lab.beforeEach((done) => {
+beforeEach((done) => {
   configuration = {
     server: {
       debug: {
@@ -36,7 +30,7 @@ lab.beforeEach((done) => {
         plugin: {
           register: '../lib/plugin-loader',
           options: {
-            paths: ['../routes'],
+            paths: ['./routes'],
             pluginOptions: {
               index: {
                 routes: {
@@ -57,30 +51,28 @@ lab.beforeEach((done) => {
   done()
 })
 
-describe('Index file', () => {
-  it('starts server well', done => {
+describe('start server', () => {
+  test('should able to start server well', () => {
     Index((err, server) => {
-      expect(err).to.not.exist()
-      expect(server).to.be.instanceOf(Hapi.Server)
-      done()
+      expect(err).toBeNull()
+      expect(server).toBeInstanceOf(Hapi.Server)
     })
   })
 
-  it('start server well and register plugin with options', done => {
+  test('should able start server well and register plugin with options', () => {
     Glue.compose.bind(Glue, configuration, options)((err, server) => {
-      expect(err).to.not.exist()
-      expect(server).to.be.instanceOf(Hapi.Server)
-      done()
+      expect(err).toBeNull()
+      expect(server).toBeInstanceOf(Hapi.Server)
     })
   })
 
-  it('start server well and register plugin options of a plugin that does not exist', done => {
+  test('should able to start server well and register plugin options of a plugin that does not exist', () => {
     configuration.registrations = [
       {
         plugin: {
           register: '../lib/plugin-loader',
           options: {
-            paths: ['../routes'],
+            paths: ['./routes'],
             pluginOptions: {
               indexBad: {
                 routes: {
@@ -98,32 +90,8 @@ describe('Index file', () => {
     }
 
     Glue.compose.bind(Glue, configuration, options)((err, server) => {
-      expect(err).to.not.exist()
-      expect(server).to.be.instanceOf(Hapi.Server)
-      done()
-    })
-  })
-
-  it('start server well and register bad plugins', done => {
-    configuration.registrations = [
-      {
-        plugin: {
-          register: '../lib/plugin-loader',
-          options: {
-            paths: [null]
-          }
-        }
-      }
-    ]
-
-    const options = {
-      relativeTo: __dirname
-    }
-
-    Glue.compose.bind(Glue, configuration, options)((err, server) => {
-      expect(err).to.not.exist()
-      expect(server).to.be.instanceOf(Hapi.Server)
-      done()
+      expect(err).toBeNull()
+      expect(server).toBeInstanceOf(Hapi.Server)
     })
   })
 })
