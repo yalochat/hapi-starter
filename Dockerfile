@@ -6,7 +6,7 @@ ENV APP_PATH=/code
 
 # Use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:
-ADD package.json /tmp/package.json
+ADD package.json package-lock.json /tmp/
 RUN cd /tmp && npm install --production
 
 ADD .  ${APP_PATH}
