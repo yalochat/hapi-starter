@@ -5,9 +5,13 @@
     "main": "server.js",
     "scripts": {
         "test": "APP_ENV=test jest --coverage --verbose --runInBand",
-        "precommit": "lint-staged",
         "gulp:test": "gulp test",
         "gulp:serve": "gulp serve"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
     },
     "lint-staged": {
         "*.js": [
