@@ -1,5 +1,3 @@
-'use strict'
-
 const Config = require('../config')
 
 describe('get data from config', () => {
