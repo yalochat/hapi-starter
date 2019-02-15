@@ -51,8 +51,7 @@
         "jest": "^24.1.0",
         "lint-staged": "^8.1.4",
         "minimist": "^1.2.0",
-        "prettier": "^1.16.4",
-        "require-dir": "^1.2.0"
+        "prettier": "^1.16.4"
     },
     "dependencies": {
         "boom": "^7.3.0",
@@ -61,6 +60,7 @@
         "glue": "^6.0.0",
         "hapi": "^18.1.0",
         "lodash": "^4.17.11",
+        "require-dir": "^1.2.0",
         "to-boolean": "^1.0.0"
     },
     "jest": {
