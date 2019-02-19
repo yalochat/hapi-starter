@@ -1,9 +1,9 @@
-const Bucker = require('bucker')
-const Config = require('./config')
+const pino = require('pino')
+const config = require('./config')
 const Composer = require('./index')
 
-const logger = Bucker.createLogger(
-  Object.assign(Config.get('/logger/options'), { name: '/server' }),
+const logger = pino(
+  Object.assign(config.get('/logger/options'), { name: '/server' }),
 )
 
 const startServer = async () => {

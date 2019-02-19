@@ -55,11 +55,12 @@
     },
     "dependencies": {
         "boom": "^7.3.0",
-        "bucker": "^1.1.1",
         "confidence": "^4.0.1",
         "glue": "^6.0.0",
         "hapi": "^18.1.0",
+        "hapi-pino": "^5.4.1",
         "lodash": "^4.17.11",
+        "pino": "^5.11.1",
         "require-dir": "^1.2.0",
         "to-boolean": "^1.0.0"
     },

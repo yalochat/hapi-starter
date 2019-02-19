@@ -1,10 +1,10 @@
 const gulp = require('gulp'); // eslint-disable-line
 const nodemon = require('gulp-nodemon'); // eslint-disable-line
 const minimist = require('minimist'); // eslint-disable-line
-const bucker = require('bucker')
+const pino = require('pino')
 
 const options = minimist(process.argv.slice(3))
-const logger = bucker.createLogger({ name: '/tasks/test' })
+const logger = pino({ name: '/tasks/test' })
 
 gulp.task(
   'test',

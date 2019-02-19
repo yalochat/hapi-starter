@@ -1,5 +1,6 @@
-const Confidence = require('confidence')
-const Config = require('./config')
+const hapiPino = require('hapi-pino')
+const { Store } = require('confidence')
+const config = require('./config')
 
 const manifest = {
   $meta: 'This file defines all configuration for project.',
@@ -7,13 +8,20 @@ const manifest = {
     debug: {
       request: ['error'],
     },
-    port: Config.get('/port/web'),
+    port: config.get('/port/web'),
     routes: {
       cors: true,
     },
   },
   register: {
     plugins: [
+      {
+        plugin: hapiPino,
+        option: {
+          prettyPrint: config.get('/env') !== 'production',
+          redact: ['req.headers.authorization'],
+        },
+      },
       {
         plugin: './lib/plugin-loader',
         options: {
@@ -24,7 +32,7 @@ const manifest = {
   },
 }
 
-const store = new Confidence.Store(manifest)
+const store = new Store(manifest)
 
 module.exports = {
   get: (key, criteria = { env: process.env.APP_ENV }) => store.get(key, criteria),

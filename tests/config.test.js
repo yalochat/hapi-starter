@@ -13,6 +13,6 @@ describe('get data from config', () => {
   })
 
   test('should able to get logger configuration without set environment variable', () => {
-    expect(Config.get('/logger/options')).toEqual({ console: false })
+    expect(Config.get('/logger/options')).toEqual({ console: true })
   })
 })

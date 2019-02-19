@@ -1,8 +1,8 @@
-const bucker = require('bucker')
+const pino = require('pino')
 const gulp = require('gulp'); // eslint-disable-line
 const nodemon = require('gulp-nodemon'); // eslint-disable-line
 
-const logger = bucker.createLogger({ nme: '/tasks/serve' })
+const logger = pino({ name: '/tasks/serve' })
 
 gulp.task(
   'serve',

@@ -1,5 +1,5 @@
-const Bucker = require('bucker')
-const Hapi = require('hapi')
+const pino = require('pino')
+const hapi = require('hapi')
 
 const config = require('../../config')
 const pluginLoader = require('../../lib/plugin-loader')
@@ -7,7 +7,7 @@ const pluginLoader = require('../../lib/plugin-loader')
 let server = null
 
 beforeEach(async (done) => {
-  server = new Hapi.Server()
+  server = new hapi.Server()
   await server.start({ port: config.get('/port/web') })
 
   done()
@@ -21,7 +21,7 @@ afterEach((done) => {
 
 describe('Plugin Loader lib', () => {
   test('should be able to register plugins from a dir', async () => {
-    const logger = Bucker.createLogger({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader' })
 
     jest.spyOn(logger, 'info')
 
@@ -44,7 +44,7 @@ describe('Plugin Loader lib', () => {
   })
 
   test('should be able to register plugin recursively', async () => {
-    const logger = Bucker.createLogger({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader' })
 
     jest.spyOn(logger, 'info')
 
@@ -70,7 +70,7 @@ describe('Plugin Loader lib', () => {
   })
 
   test('should be able to manage errors if plugin load fails', async () => {
-    const logger = Bucker.createLogger({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader' })
 
     jest.spyOn(logger, 'warn')
 
@@ -95,7 +95,7 @@ describe('Plugin Loader lib', () => {
   })
 
   test('should be ale to manage errors if dir does not exists', async () => {
-    const logger = Bucker.createLogger({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader' })
 
     jest.spyOn(logger, 'warn')
 
@@ -115,7 +115,7 @@ describe('Plugin Loader lib', () => {
   })
 
   test('should be able to configure options for specific plugins', async () => {
-    const logger = Bucker.createLogger({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader' })
 
     jest.spyOn(logger, 'info')
 

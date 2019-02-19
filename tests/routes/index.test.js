@@ -1,16 +1,16 @@
-const Hapi = require('hapi')
+const hapi = require('hapi')
 
 const IndexPlugin = require('../../routes')
-const Config = require('../../config')
-const Package = require('../../package.json')
+const config = require('../../config')
+const pkg = require('../../package.json')
 
 let server = null
 
 beforeEach(async (done) => {
   const plugins = [IndexPlugin]
 
-  server = new Hapi.Server()
-  await server.start({ port: Config.get('/port/web') })
+  server = new hapi.Server()
+  await server.start({ port: config.get('/port/web') })
   await server.register(plugins)
 
   done()
@@ -31,7 +31,7 @@ describe('Index Route', () => {
 
     const response = await server.inject(request)
 
-    expect(response.result).toEqual({ version: Package.version })
+    expect(response.result).toEqual({ version: pkg.version })
     expect(response.statusCode).toEqual(200)
   })
 })

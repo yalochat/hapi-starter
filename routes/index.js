@@ -1,4 +1,4 @@
-const Pkg = require('../package.json')
+const pkg = require('../package.json')
 
 module.exports = {
   register: async (server) => {
@@ -10,7 +10,7 @@ module.exports = {
         notes: 'Service status endpoint',
         tags: ['api'],
       },
-      handler: () => ({ version: Pkg.version }),
+      handler: () => ({ version: pkg.version }),
     })
   },
   name: 'status',
