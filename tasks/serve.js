@@ -2,7 +2,7 @@ const pino = require('pino')
 const gulp = require('gulp'); // eslint-disable-line
 const nodemon = require('gulp-nodemon'); // eslint-disable-line
 
-const logger = pino({ name: '/tasks/serve' })
+const logger = pino({ name: '/tasks/serve', base: null })
 
 gulp.task(
   'serve',

@@ -21,7 +21,7 @@ afterEach((done) => {
 
 describe('Plugin Loader lib', () => {
   test('should be able to register plugins from a dir', async () => {
-    const logger = pino({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader', base: null })
 
     jest.spyOn(logger, 'info')
 
@@ -44,7 +44,7 @@ describe('Plugin Loader lib', () => {
   })
 
   test('should be able to register plugin recursively', async () => {
-    const logger = pino({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader', base: null })
 
     jest.spyOn(logger, 'info')
 
@@ -70,7 +70,7 @@ describe('Plugin Loader lib', () => {
   })
 
   test('should be able to manage errors if plugin load fails', async () => {
-    const logger = pino({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader', base: null })
 
     jest.spyOn(logger, 'warn')
 
@@ -95,7 +95,7 @@ describe('Plugin Loader lib', () => {
   })
 
   test('should be ale to manage errors if dir does not exists', async () => {
-    const logger = pino({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader', base: null })
 
     jest.spyOn(logger, 'warn')
 
@@ -115,7 +115,7 @@ describe('Plugin Loader lib', () => {
   })
 
   test('should be able to configure options for specific plugins', async () => {
-    const logger = pino({ name: '/lib/plugin-loader' })
+    const logger = pino({ name: '/lib/plugin-loader', base: null })
 
     jest.spyOn(logger, 'info')
 

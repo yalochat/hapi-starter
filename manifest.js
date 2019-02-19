@@ -17,9 +17,12 @@ const manifest = {
     plugins: [
       {
         plugin: hapiPino,
-        option: {
+        options: {
           prettyPrint: config.get('/env') !== 'production',
-          redact: ['req.headers.authorization'],
+          redact: {
+            paths: ['req.headers', 'res.headers'],
+            remove: true,
+          },
         },
       },
       {

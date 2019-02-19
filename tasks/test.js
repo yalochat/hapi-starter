@@ -4,7 +4,7 @@ const minimist = require('minimist'); // eslint-disable-line
 const pino = require('pino')
 
 const options = minimist(process.argv.slice(3))
-const logger = pino({ name: '/tasks/test' })
+const logger = pino({ name: '/tasks/test', base: null })
 
 gulp.task(
   'test',
