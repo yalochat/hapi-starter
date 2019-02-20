@@ -1,35 +1,37 @@
-'use strict'
-
 const Hapi = require('hapi')
 
-const IndexPlugin = require('../../routes/index')
+const IndexPlugin = require('../../routes')
 const Config = require('../../config')
 const Package = require('../../package.json')
 
 let server = null
 
-beforeEach(() => {
+beforeEach(async (done) => {
   const plugins = [IndexPlugin]
 
   server = new Hapi.Server()
-  server.connection({ port: Config.get('/port/web') })
-  server.register(plugins, (err) => {
-    if (err) {
-      return done(err)
-    }
-  })
+  await server.start({ port: Config.get('/port/web') })
+  await server.register(plugins)
+
+  done()
+})
+
+afterEach((done) => {
+  server.stop()
+
+  done()
 })
 
 describe('Index Route', () => {
-  test('returns route /status with status code 200 and version', () => {
+  test('returns route /status with status code 200 and version', async () => {
     const request = {
       method: 'GET',
-      url: '/status'
+      url: '/status',
     }
 
-    server.inject(request, (response) => {
-      expect(response.result).toEqual({ version: Package.version })
-      expect(response.statusCode).toEqual(200)
-    })
+    const response = await server.inject(request)
+
+    expect(response.result).toEqual({ version: Package.version })
+    expect(response.statusCode).toEqual(200)
   })
 })
