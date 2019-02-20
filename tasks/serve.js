@@ -1,16 +1,17 @@
-'use strict'
+const pino = require('pino')
+const gulp = require('gulp'); // eslint-disable-line
+const nodemon = require('gulp-nodemon'); // eslint-disable-line
 
-const gulp = require('gulp')
-const nodemon = require('gulp-nodemon')
-const bucker = require('bucker')
+const logger = pino({ name: '/tasks/serve', base: null })
 
-const logger = bucker.createLogger({}, 'serve-task')
-
-gulp.task('serve', ['watch'], () => {
-  nodemon({
-    script: 'server',
-    ext: 'html js'
-  }).on('start', () => {
-    logger.info(`Server task has been started!`)
-  })
-})
+gulp.task(
+  'serve',
+  gulp.series(() => {
+    nodemon({ script: 'server', ext: 'js', nodeArgs: ['--inspect'] }).on(
+      'start',
+      () => {
+        logger.info('Serve task has been started!')
+      },
+    )
+  }),
+)

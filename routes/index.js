@@ -1,21 +1,17 @@
-'use strict'
+const pkg = require('../package.json')
 
-const Package = require('../package.json')
-
-exports.register = (server, options, next) => {
-  server.route({
-    method: 'GET',
-    path: '/status',
-    handler: (request, reply) => {
-      reply({
-        version: Package.version
-      })
-    }
-  })
-
-  next()
-}
-
-exports.register.attributes = {
-  name: 'routes-index'
+module.exports = {
+  register: async (server) => {
+    server.route({
+      method: 'GET',
+      path: '/status',
+      config: {
+        description: 'Status',
+        notes: 'Service status endpoint',
+        tags: ['api'],
+      },
+      handler: () => ({ version: pkg.version }),
+    })
+  },
+  name: 'status',
 }

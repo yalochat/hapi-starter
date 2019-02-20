@@ -1,5 +1,3 @@
-'use strict'
-
 const Config = require('../config')
 
 describe('get data from config', () => {
@@ -15,6 +13,6 @@ describe('get data from config', () => {
   })
 
   test('should able to get logger configuration without set environment variable', () => {
-    expect(Config.get('/logger/options')).toEqual({ console: false })
+    expect(Config.get('/logger/options')).toEqual({ console: true })
   })
 })

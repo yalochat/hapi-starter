@@ -1,97 +1,45 @@
-'use strict'
-
-const Hapi = require('hapi')
-const Glue = require('glue')
 const Index = require('../index')
 
 let configuration = null
-let options = null
 
 beforeEach((done) => {
   configuration = {
     server: {
       debug: {
-        request: ['error']
+        request: ['error'],
       },
-      connections: {
-        routes: {
-          cors: true
-        }
-      }
+      port: 3000,
+      routes: {
+        cors: true,
+      },
     },
-    connections: [
-      {
-        port: 3000,
-        labels: ['web']
-      }
-    ],
-    registrations: [
-      {
-        plugin: {
-          register: '../lib/plugin-loader',
+    register: {
+      plugins: [
+        {
+          plugin: '../lib/plugin-loader',
           options: {
-            paths: ['./routes'],
+            paths: ['../routes'],
             pluginOptions: {
-              index: {
+              indexBad: {
                 routes: {
-                  prefix: '/'
-                }
-              }
-            }
-          }
-        }
-      }
-    ]
-  }
-
-  options = {
-    relativeTo: __dirname
+                  prefix: '/',
+                },
+              },
+            },
+          },
+        },
+      ],
+    },
   }
 
   done()
 })
 
 describe('start server', () => {
-  test('should able to start server well', () => {
-    Index((err, server) => {
-      expect(err).toBeNull()
-      expect(server).toBeInstanceOf(Hapi.Server)
-    })
-  })
+  test('should able to start server well', async () => {
+    const server = await Index(configuration)
+    expect(server).toBeDefined()
 
-  test('should able start server well and register plugin with options', () => {
-    Glue.compose.bind(Glue, configuration, options)((err, server) => {
-      expect(err).toBeNull()
-      expect(server).toBeInstanceOf(Hapi.Server)
-    })
-  })
-
-  test('should able to start server well and register plugin options of a plugin that does not exist', () => {
-    configuration.registrations = [
-      {
-        plugin: {
-          register: '../lib/plugin-loader',
-          options: {
-            paths: ['./routes'],
-            pluginOptions: {
-              indexBad: {
-                routes: {
-                  prefix: '/'
-                }
-              }
-            }
-          }
-        }
-      }
-    ]
-
-    const options = {
-      relativeTo: __dirname
-    }
-
-    Glue.compose.bind(Glue, configuration, options)((err, server) => {
-      expect(err).toBeNull()
-      expect(server).toBeInstanceOf(Hapi.Server)
-    })
+    server.stop()
   })
 })

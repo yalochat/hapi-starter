@@ -1,6 +1,6 @@
-FROM node:8.1
+FROM node:10.15.1
 
-MAINTAINER Yalo <eng@yalochat.com>
+LABEL MAINTAINER="Yalo <eng@yalochat.com>"
 
 ENV APP_PATH=/code
 
@@ -9,7 +9,7 @@ ENV APP_PATH=/code
 ADD package.json package-lock.json /tmp/
 RUN cd /tmp && npm install --production
 
-ADD .  ${APP_PATH}
+ADD . ${APP_PATH}
 
 # Add node_modules to public folder
 RUN cp -a /tmp/node_modules ${APP_PATH}

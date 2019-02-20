@@ -1,28 +1,24 @@
-'use strict'
-
 const _ = require('lodash')
-const Confidence = require('confidence')
-const ToBoolean = require('to-boolean')
+const { Store } = require('confidence')
+const toBoolean = require('to-boolean')
 
 const config = {
   $meta: 'This file defines all configuration for project.',
   projectName: 'hapi-starter',
+  env: process.env.APP_ENV,
   port: {
-    web: process.env.APP_PORT
+    web: process.env.APP_PORT,
   },
   logger: {
     options: {
-      console: ToBoolean(_.defaultTo(process.env.LOGGER_DEBUG, false))
-    }
-  }
+      console: toBoolean(_.defaultTo(process.env.LOGGER_DEBUG, true)),
+    },
+  },
 }
 
-const store = new Confidence.Store(config)
-const criteria = {
-  env: process.env.APP_ENV
-}
+const store = new Store(config)
 
 module.exports = {
-  get: (key) => store.get(key, criteria),
-  meta: (key) => store.meta(key, criteria)
+  get: (key, criteria = { env: process.env.APP_ENV }) => store.get(key, criteria),
+  meta: (key, criteria = { env: process.env.APP_ENV }) => store.meta(key, criteria),
 }
