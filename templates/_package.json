@@ -1,0 +1,69 @@
+{
+    "name": "<%= name %>",
+    "version": "1.0.0",
+    "description": "<%= description %>",
+    "main": "server.js",
+    "scripts": {
+        "test": "APP_ENV=test jest --coverage --verbose --runInBand",
+        "gulp:test": "gulp test",
+        "gulp:serve": "gulp serve"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.js": [
+            "prettier --write",
+            "eslint --fix",
+            "git add"
+        ]
+    },
+    <% if (repository_url) { %>
+    "repository": {
+        "type": "git",
+        "url": "<%= repository_url %>"
+    },
+    <% } %>
+    "keywords": [
+        "hapijs",
+        "yalo",
+        "nodejs",
+        "starter",
+        "kit",
+        "boilerplate",
+        "generator"
+    ],
+    "author": "Yalo <eng@yalochat.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "dotenv": "^6.2.0",
+        "eslint": "^5.13.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-import": "^2.16.0",
+        "gulp": "^4.0.0",
+        "gulp-nodemon": "^2.4.2",
+        "gulp-watch": "^5.0.1",
+        "husky": "^1.3.1",
+        "jest": "^24.1.0",
+        "lint-staged": "^8.1.4",
+        "minimist": "^1.2.0",
+        "prettier": "^1.16.4"
+    },
+    "dependencies": {
+        "boom": "^7.3.0",
+        "confidence": "^4.0.1",
+        "glue": "^6.0.0",
+        "hapi": "^18.1.0",
+        "hapi-pino": "^5.4.1",
+        "lodash": "^4.17.11",
+        "pino": "^5.11.1",
+        "require-dir": "^1.2.0",
+        "to-boolean": "^1.0.0"
+    },
+    "jest": {
+        "collectCoverage": true,
+        "coverageDirectory": "coverage"
+    }
+}
